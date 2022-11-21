@@ -6,6 +6,9 @@ import com.yuzuo.Employee.repository.EmployeeRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class EmployeeServiceImpl implements EmployeeService{
 
@@ -23,5 +26,18 @@ public class EmployeeServiceImpl implements EmployeeService{
         BeanUtils.copyProperties(employee, employeeEntity);
         employeeRepository.save(employeeEntity);
         return employee;
+    }
+
+    @Override
+    public List<Employee> getEmployees() {
+//        get the list of employee entities from the repository
+        List<EmployeeEntity> employeeEntities = employeeRepository.findAll();
+
+//        convert to list of employee models for the UI
+        List<Employee> employees = employeeEntities
+                .stream()
+                .map(emp -> new Employee(emp.getId(), emp.getFirstName(), emp.getLastName(), emp.getEmailId()))
+                .collect(Collectors.toList());
+        return employees;
     }
 }
