@@ -102,7 +102,7 @@ const UpdateEmployee = () => {
                         Update
                     </button>
                     <button
-                        className='rounded text-white font-semibold bg-red-500 px-3 py-2 hover:bg-red-700'
+                        className='rounded text-white font-semibold bg-gray-500 px-3 py-2 hover:bg-gray-700'
                         onClick={cancelUpdate}
                     >
                         Cancel

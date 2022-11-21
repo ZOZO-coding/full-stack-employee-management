@@ -45,6 +45,12 @@ const AddEmployee = () => {
         })
     }
 
+    // cancel the action and return to employee list
+    const cancelAddEmployee = (e) => {
+        e.preventDefault();
+        navigate("/employeeList");
+    }
+
     return (
         <div className='bg-white flex max-w-2xl mt-4 mx-auto shadow-xl border-b'>
             <div className='p-8'>
@@ -102,6 +108,12 @@ const AddEmployee = () => {
                         onClick={resetEmployee}
                     >
                         Clear
+                    </button>
+                    <button
+                        className='rounded text-white font-semibold bg-gray-500 px-3 py-2 hover:bg-gray-700'
+                        onClick={cancelAddEmployee}
+                    >
+                        Cancel
                     </button>
                 </div>
             </div>
