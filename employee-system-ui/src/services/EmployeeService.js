@@ -14,6 +14,10 @@ class EmployeeService {
         return axios.get(EMPLOYEE_API_BASE_URL)
     }
 
+    deleteEmployee(id) {
+        return axios.delete(EMPLOYEE_API_BASE_URL + "/" + id)
+    }
+
 }
 
 // export the class with instantiation, so that whenever we import it, we can start using the methods defined in the class.

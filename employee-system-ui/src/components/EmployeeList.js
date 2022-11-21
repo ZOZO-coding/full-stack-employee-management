@@ -30,6 +30,19 @@ const EmployeeList = () => {
         fetchData();
     }, []);
 
+    // add delete employee logic in the parent component, and pass it to the children as props.
+    const deleteEmployee = (e, id) => {
+        e.preventDefault();
+        EmployeeService.deleteEmployee(id)
+        .then((res) => {
+            if (employees) {
+                setEmployees((prevEmployees) => {
+                    return prevEmployees.filter((employee) => employee.id !== id);
+                });
+            }
+        })
+    }
+
     return (
         <div className='container mx-auto my-8'>
             <div className='h-12'>
@@ -54,7 +67,11 @@ const EmployeeList = () => {
                     {!loading && (
                         <tbody className='bg-white'>
                             {employees.map((employee) => (
-                                <Employee employee={employee} key={employee.id} />
+                                <Employee 
+                                    employee={employee} 
+                                    key={employee.id} 
+                                    deleteEmployee={deleteEmployee}
+                                />
                             ))}
                         </tbody>
                     )}
