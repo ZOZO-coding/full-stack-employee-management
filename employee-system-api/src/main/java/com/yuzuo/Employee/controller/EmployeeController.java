@@ -43,4 +43,18 @@ public class EmployeeController {
         response.put("deleted", deleted);
         return ResponseEntity.ok(response);
     }
+
+//    Edit logic: first we find the employee, then we can edit it (2 handlers)
+    @GetMapping("/employees/{id}")
+    public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id) {
+        Employee employee = null;
+        employee = employeeService.getEmployeeById(id);
+        return ResponseEntity.ok(employee);
+    }
+
+    @PutMapping("/employees/{id}")
+    public ResponseEntity<Employee> updateEmployee(@PathVariable Long id, @RequestBody Employee employee) {
+        employee = employeeService.updateEmployee(id, employee);
+        return ResponseEntity.ok(employee);
+    }
 }
